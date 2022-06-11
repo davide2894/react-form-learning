@@ -1,7 +1,7 @@
-import "./Form.scss";
+import "./FormWithPrinter.scss";
 import { useState } from "react";
 
-export default function Form(){
+export default function FormWithPrinter(){
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -12,7 +12,8 @@ export default function Form(){
         favColor: ""
     });
 
-    const [dataToLog, setDataToLog] = useState([]);
+    const [shouldShowLogger, setShouldShowLogger] = useState(false);
+
     
     function handleChange(event) {
         const {name, value, type, checked} = event.target;
@@ -26,12 +27,7 @@ export default function Form(){
 
     function handleOnSubmit(evt) {
         evt.preventDefault();
-        const arr = [];
-        for(var key in formData){
-            arr.push({[key]: formData[key]})
-        }
-        setDataToLog(arr);
-        console.log(dataToLog);
+        setShouldShowLogger(true);
     }
 
     return (
@@ -142,9 +138,16 @@ export default function Form(){
                 </div>
                 <button className="form__element">Submit</button>
             </form>
-
-            <h1>Submitted data</h1>
-            <div><pre>{JSON.stringify(formData, null, 2) }</pre></div>
+            <div className="printer">
+                <h2>Submitted data</h2>
+                {shouldShowLogger && (
+                    <div>
+                        <pre>
+                            {JSON.stringify(formData, null, 2)}
+                        </pre>
+                    </div>
+                )}
+            </div>            
         </div>
-    )
+    );
 }
