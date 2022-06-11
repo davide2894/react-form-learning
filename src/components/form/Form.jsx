@@ -8,9 +8,6 @@ export default function Form(){
     });
     
     function handleChange(event) {
-        /**
-         * Challenge: update the firstName state on every keystroke
-         */
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
