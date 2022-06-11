@@ -12,7 +12,7 @@ export default function Form(){
         favColor: ""
     });
 
-    console.log(formData.favColor); 
+    const [dataToLog, setDataToLog] = useState([]);
     
     function handleChange(event) {
         const {name, value, type, checked} = event.target;
@@ -26,101 +26,125 @@ export default function Form(){
 
     function handleOnSubmit(evt) {
         evt.preventDefault();
-        console.log(formData);
+        const arr = [];
+        for(var key in formData){
+            arr.push({[key]: formData[key]})
+        }
+        setDataToLog(arr);
+        console.log(dataToLog);
     }
 
     return (
-        <form onSubmit={handleOnSubmit}>
-            <input
-                type="text"
-                placeholder="First Name"
-                onChange={handleChange}
-                name="firstName"
-                value={formData.firstName}
-            />
-            <input
-                type="text"
-                placeholder="Last Name"
-                onChange={handleChange}
-                name="lastName"
-                value={formData.lastName}
-            />
-            <input 
-                type="email" 
-                placeholder="Email"
-                onChange={handleChange}
-                name="email"
-                value={formData.email}
-            />
-            <textarea
-                placeholder="Text Area"
-                onChange={handleChange}
-                name="textArea"
-                value={formData.textArea}
-            />
-            <input
-                onChange={handleChange}
-                id="checkbox" 
-                type="checkbox"
-                name="isFriendly"
-                value={formData.isFriendly}
-            />
-            <label htmlFor="#checkbox">Are you friendly?</label>
-            <fieldset>
-                <legend>Current employment status</legend>
-                <input 
-                    type="radio"
-                    id="unemployed"
-                    name="employment"
-                    value="unemployed"
-                    checked={formData.employment === "unemployed"}
+        <div>
+            <form className="form" onSubmit={handleOnSubmit}>
+                <input
+                    className="form__input"
+                    type="text"
+                    placeholder="First Name"
                     onChange={handleChange}
+                    name="firstName"
+                    value={formData.firstName}
                 />
-                <label htmlFor="unemployed">Unemployed</label>
-                <br />
-                
-                <input 
-                    type="radio"
-                    id="part-time"
-                    name="employment"
-                    value="part-time"
-                    checked={formData.employment === "part-time"}
+                <input
+                    className="form__input"
+                    type="text"
+                    placeholder="Last Name"
                     onChange={handleChange}
+                    name="lastName"
+                    value={formData.lastName}
                 />
-                <label htmlFor="part-time">Part-time</label>
-                <br />
-                
                 <input 
-                    type="radio"
-                    id="full-time"
-                    name="employment"
-                    value="full-time"
-                    checked={formData.employment === "full-time"}
+                    className="form__input"
+                    type="email" 
+                    placeholder="Email"
                     onChange={handleChange}
+                    name="email"
+                    value={formData.email}
                 />
-                <label htmlFor="full-time">Full-time</label>
-                <br />
-            </fieldset>
+                <textarea
+                    className="form__textarea"
+                    placeholder="Text Area"
+                    onChange={handleChange}
+                    name="textArea"
+                    value={formData.textArea}
+                />
 
-            <label htmlFor="favColor">What is your favorite color?</label>
-            <br />
-            <select
-                id="favColor"
-                name="favColor"
-                value={formData.favColor}
-                onChange={handleChange}
-            >
-                <option value="">--- choose color ---</option>
-                <option value="red">Red</option>
-                <option value="orange">Orange</option>
-                <option value="yellow">Yellow</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
-                <option value="indigo">Indigo</option>
-                <option value="violet">Violet</option>
-            </select>
+                <div className="form__checkboxContainer">
+                    <input
+                        className="form__input"
+                        onChange={handleChange}
+                        id="checkbox" 
+                        type="checkbox"
+                        name="isFriendly"
+                        value={formData.isFriendly}
+                    />
+                    <label htmlFor="#checkbox">Are you friendly?</label>
+                </div>
 
-            <button>Submit</button>
-        </form>
+                <fieldset className="form__radioFieldset">
+                    <legend>Current employment status</legend>
+                    <input
+                        className="form__input"
+                        type="radio"
+                        id="unemployed"
+                        name="employment"
+                        value="unemployed"
+                        checked={formData.employment === "unemployed"}
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="unemployed">Unemployed</label>
+                    <br />
+                    
+                    <input 
+                        className="form__input"
+                        type="radio"
+                        id="part-time"
+                        name="employment"
+                        value="part-time"
+                        checked={formData.employment === "part-time"}
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="part-time">Part-time</label>
+                    <br />
+                    
+                    <input
+                        className="form__input" 
+                        type="radio"
+                        id="full-time"
+                        name="employment"
+                        value="full-time"
+                        checked={formData.employment === "full-time"}
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="full-time">Full-time</label>
+                    <br />
+                </fieldset>
+
+                <div className="form__selectContainer">
+                    <label htmlFor="favColor">What is your favorite color?</label>
+                    <br />
+                    <select
+                        className="form__select"
+                        id="favColor"
+                        name="favColor"
+                        value={formData.favColor}
+                        onChange={handleChange}
+                    >
+                        <option value="">--- choose color ---</option>
+                        <option value="red">Red</option>
+                        <option value="orange">Orange</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="green">Green</option>
+                        <option value="blue">Blue</option>
+                        <option value="indigo">Indigo</option>
+                        <option value="violet">Violet</option>
+                    </select>
+                </div>
+                <button className="form__element">Submit</button>
+            </form>
+
+            <h1>Submitted data</h1>
+            <div><pre>{JSON.stringify(formData, null, 2) }</pre></div>
+        </div>
     )
 }
