@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-form-learning/static/css/main.5ec46d62.css",
+    "main.js": "/react-form-learning/static/js/main.2731817c.js",
+    "static/js/787.efbaffc5.chunk.js": "/react-form-learning/static/js/787.efbaffc5.chunk.js",
+    "index.html": "/react-form-learning/index.html",
+    "main.5ec46d62.css.map": "/react-form-learning/static/css/main.5ec46d62.css.map",
+    "main.2731817c.js.map": "/react-form-learning/static/js/main.2731817c.js.map",
+    "787.efbaffc5.chunk.js.map": "/react-form-learning/static/js/787.efbaffc5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5ec46d62.css",
+    "static/js/main.2731817c.js"
+  ]
+}
